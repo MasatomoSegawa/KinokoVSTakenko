@@ -93,7 +93,7 @@ public class GameLogic : MonoBehaviour {
 
         if (Input.anyKeyDown)
         {
-            Application.LoadLevel("GamePlay");
+            FadeManager.Instance.LoadLevel("GamePlay", 1.0f);
         }
 
     }
@@ -116,6 +116,9 @@ public class GameLogic : MonoBehaviour {
     /// </summary>
     void InitGamePlay()
     {
+
+        // BGM再生.
+        SoundManager.Instance.PlayBGM(0);
 
         // ゲームロジックの状態を代入.
         myState = GameLogicState.GamePlay;
@@ -160,7 +163,7 @@ public class GameLogic : MonoBehaviour {
     void NextSceneLoad()
     {
 
-        Debug.Log("Load");
+        FadeManager.Instance.LoadLevel("End", 1.0f);
 
     }
 
@@ -169,6 +172,12 @@ public class GameLogic : MonoBehaviour {
     /// </summary>
     void GameClear()
     {
+
+        // BGM停止.
+        SoundManager.Instance.StopBGM();
+
+        // SE再生.
+        SoundManager.Instance.PlaySE(1);
 
         myState = GameLogicState.GameClear;
         
@@ -187,6 +196,12 @@ public class GameLogic : MonoBehaviour {
     /// </summary>
     void GameOver()
     {
+
+        // BGM停止.
+        SoundManager.Instance.StopBGM();
+        
+        // SE再生.
+        SoundManager.Instance.PlaySE(0);
 
         myState = GameLogicState.GameOver;
 

@@ -166,8 +166,21 @@ public class SoundManager : Singleton<SoundManager>
 		}
 
 	}
+
+    public void PlayBGM(int ID)
+    {
+
+        BGMSource.clip = BGMs[ID].clip;
+        BGMSource.Play();
+
+    }
+
+    public void StopBGM()
+    {
+        BGMSource.Stop();
+    }
 				
-	public void PlaySE(int ID){
+	public float PlaySE(int ID){
 	
 		if (0 <= ID && ID < SEs.Length && SEs[ID].clip != null) {
 			foreach (myAudioSource audiosource in SESources) {
@@ -177,7 +190,8 @@ public class SoundManager : Singleton<SoundManager>
 					audiosource.source.Play ();
 					audiosource.ID = ID;
 					SEs [ID].m_Volume = volume.SE;
-					return;
+
+                    return audiosource.source.clip.length;
 				}
 			}
 
@@ -185,7 +199,10 @@ public class SoundManager : Singleton<SoundManager>
 
 			Debug.Log ("index error" + "[" + ID + "]");
 
+            return 0.0f;
 		}
+
+        return 0.0f;
 
 
 	}
