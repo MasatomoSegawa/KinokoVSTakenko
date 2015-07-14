@@ -3,7 +3,8 @@ using System.Collections;
 
 public class TitleLogic : MonoBehaviour {
 
-    public Animator TextAnimator;
+    public Animator PushStartTextAnimator;
+    public Animator Logo;
     
     float nextTime;
     float coolTime;
@@ -19,7 +20,8 @@ public class TitleLogic : MonoBehaviour {
         if (Input.anyKeyDown && onceFlag == true)
         {
             float coolTime = SoundManager.Instance.PlaySE(0);
-            TextAnimator.SetTrigger("Wait");
+            PushStartTextAnimator.SetTrigger("Wait");
+            Logo.SetTrigger("Shake");
             nextTime = coolTime + Time.time;
             onceFlag = false;
         }

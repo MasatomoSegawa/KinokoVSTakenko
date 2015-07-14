@@ -47,9 +47,9 @@ public class GaugeSlider : MonoBehaviour {
             nextTime = Time.time + coolTime;
 
             currentDistance++;
-
-            mySlider.value = currentDistance;
         }
+
+        mySlider.value = Mathf.Lerp(mySlider.value, currentDistance, Time.deltaTime);
 
 	}
 
